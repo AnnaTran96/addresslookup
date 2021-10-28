@@ -1,0 +1,131 @@
+.postcode-container,
+.address-container,
+.new-address-container {
+  //   width: 100vw;
+  //   height: 100vh;
+  //   background-color: var(--light-blue);
+
+  .postcode-inner-container-first,
+  .address-inner-container-first,
+  .new-address-inner-container-first {
+    width: 50vw;
+    height: 100vh;
+    background-color: var(--light-blue);
+    position: absolute;
+    z-index: -1;
+  }
+
+  .postcode-inner-container-second,
+  .address-inner-container-second,
+  .new-address-inner-container-second {
+    width: 50vw;
+    height: 100vh;
+    background-color: var(--pink);
+    position: absolute;
+    left: 50%;
+    z-index: -1;
+  }
+
+  .postcode-wrapper,
+  .address-wrapper,
+  .new-address-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .postcode-title,
+  .address-title,
+  .new-address-title {
+    text-transform: capitalize;
+  }
+
+  .shape1 {
+    position: absolute;
+    left: 45%;
+  }
+
+  .shape2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .shape3 {
+    position: absolute;
+    bottom: -10%;
+    left: 5%;
+  }
+
+  .postcode-form,
+  .address-form,
+  .new-address-form {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 20px 20px 20px;
+    // border: 3px rgb(255, 218, 218) solid;
+    // border-radius: 20px;
+    // padding: 60px;
+
+    label {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 22px;
+    }
+
+    input[type="text"] {
+      width: 200px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 300px;
+      text-align: center;
+      padding: 8px;
+      text-transform: uppercase;
+    }
+  }
+
+  .new-address-wrapper {
+    transform: translate(-50%, -30%);
+
+    .new-address-form {
+      margin: 0;
+
+      label {
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+
+      input[type="text"] {
+        width: 400px;
+      }
+    }
+  }
+
+  .select {
+    width: 400px;
+  }
+
+  #new-address {
+    position: absolute;
+    right: 0;
+  }
+
+  #add-new-address {
+    width: 420px;
+    transform: translateX(-3%);
+  }
+
+  .address {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 60%;
+    transform: translate(0, 60%);
+  }
+}

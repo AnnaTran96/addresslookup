@@ -1,0 +1,29 @@
+.navigation-button,
+.form-button {
+  margin: 12px;
+  font-size: 18px;
+  font-weight: 200;
+  width: 200px;
+  border-radius: 100px;
+  text-align: center;
+}
+
+.navigation-button {
+  color: var(--white);
+  border: 1px var(--blue) solid;
+  background: var(--blue);
+  padding: 18px 8px;
+}
+
+.form-button {
+  color: var(--dark-grey);
+  border: 1px var(--white) solid;
+  background: var(--white);
+  padding: 6px 8px;
+  transform: translateX(-5%);
+}
+
+.navigation-button:hover,
+.form-button:hover {
+  cursor: pointer;
+}
