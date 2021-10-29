@@ -60,21 +60,21 @@ a {
     height: 100vh;
     object-fit: cover;
   }
+}
 
-  .shape1 {
-    position: absolute;
-    left: 45%;
-  }
+.yellow-shape {
+  position: absolute;
+  left: 45%;
+}
 
-  .shape2 {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
+.red-shape {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 
-  .shape3 {
-    position: absolute;
-    bottom: -10%;
-    left: 5%;
-  }
+.blue-shape {
+  position: absolute;
+  bottom: -10%;
+  left: 5%;
 }

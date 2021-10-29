@@ -44,32 +44,11 @@
     text-transform: capitalize;
   }
 
-  .shape1 {
-    position: absolute;
-    left: 45%;
-  }
-
-  .shape2 {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-
-  .shape3 {
-    position: absolute;
-    bottom: -10%;
-    left: 5%;
-  }
-
   .postcode-form,
-  .address-form,
   .new-address-form {
     display: flex;
     flex-direction: column;
     margin: 50px 20px 20px 20px;
-    // border: 3px rgb(255, 218, 218) solid;
-    // border-radius: 20px;
-    // padding: 60px;
 
     label {
       margin-bottom: 20px;
@@ -107,6 +86,8 @@
 
   .select {
     width: 400px;
+    position: relative;
+    top: 60px;
   }
 
   #new-address {
@@ -125,7 +106,17 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+  }
+
+  .address {
     top: 60%;
     transform: translate(0, 60%);
+  }
+
+  .address-search-result {
+    text-align: center;
+    position: fixed;
+    top: 80%;
+    transform: translate(0, 90%);
   }
 }
