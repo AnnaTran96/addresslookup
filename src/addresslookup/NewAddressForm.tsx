@@ -1,5 +1,4 @@
 import { Field, Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import BlueShape from '../assets/blue-shape.svg';
@@ -24,14 +23,16 @@ const validationSchema = Yup.object().shape({
         .min(2, 'Too short')
         .required('This is required. Please enter the address'),
     city: Yup.string()
+        .min(2, 'Too short')
         .required('This is required. Please enter the city'),
     county: Yup.string()
+        .min(2, 'Too short')
         .required('This is required. Please enter the county'),
     postcode: Yup.string()
         .required('This is required. Please enter the postcode'),
 })
 
-const initialValues : NewAddressViewValues = {
+const initialValues: NewAddressViewValues = {
     addressLineOne: '',
     addressLineTwo: '',
     addressLineThree: '',
@@ -44,107 +45,42 @@ const initialValues : NewAddressViewValues = {
 
 const NewAddress = () => {
 
-    const [results, setResults] = useState<any[]>([])
-    const [state, setState] = useState({
-        addressLineOne: '',
-        addressLineTwo: '',
-        addressLineThree: '',
-        addressLineFour: '',
-        locality: '',
-        city: '',
-        county: '',
-        postcode: ''
-    })
-
     const history = useHistory()
 
     const API_KEY = 'W7Ky26qT5EeUMsi0t1R0LA33168'
 
-    // const handleSubmit = (e: any) => {
-    //     e.preventDefault()
-    //     // setFormInput(prevValues => {
-    //     //     return {...prevValues, [postcode]: e.target.value,}
-    //     // })
-    //     setState({
-    //         ...state,
-    //         postcode: e.target.value
-    //     })
-    //     fetch(`https://api.getAddress.io/private-address/${state.postcode}?api-key=${API_KEY}`, {
-    //         method: 'POST', 
-    //         mode: 'cors',
-    //         // credentials: 'include',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Access-Control-Allow-Origin': '*',
-    //             'Access-Control-Allow-Methods': 'POST',
-    //             "Access-Control-Allow-Headers": "*"
-    //         },
-    //         body: JSON.stringify({
-    //             line1: state.addressLineOne,
-    //             line2: state.addressLineTwo,
-    //             line3: state.addressLineThree,
-    //             line4: state.addressLineFour,
-    //             locality: state.locality,
-    //             townOrCity: state.city,
-    //             county: state.county
-    //         }),
-    //     })
-    //     .then(response => {
-    //         if (!response.ok) {
-    //             throw new Error(response.error)
-    //         } 
-    //         response.json()
-    //     })
-    //     .then(data => {
-    //     console.log('Success:', data);
-    //     // setResults(data.addresses)
-    //     })
-    //     .catch((error) => {
-    //     console.error('Error:', error);
-    //     })
-    // }
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault()
-        // setPostcode(e.target.value)
-        setState({
-            ...state,
-            postcode: e.target.value
-        })
-
-        const getData = async () => {
-            try {
-                const res = await fetch(`https://api.getAddress.io/private-address/${state.postcode}?api-key=${API_KEY}`, {mode: 'cors', method: 'POST'})
-                const data = await res.json()
-                console.log({data})
-            } catch (err) {
-                return err
-            }
+    const handleSubmit = async (values: NewAddressViewValues) => {
+        const { addressLineOne, addressLineTwo, addressLineThree, addressLineFour, city, county, locality, postcode } = values;
+        const body = {
+            addressLineOne: addressLineOne,
+            addressLineTwo: addressLineTwo,
+            addressLineThree: addressLineThree,
+            addressLineFour: addressLineFour,
+            city: city,
+            county: county,
+            locality: locality,
+            postcode: postcode
+        };
+        console.log(body)
+        
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(body)
         }
 
-        getData()
-    }
+        const url = `https://api.getAddress.io/private-address/${body.postcode}?api-key=${API_KEY}`
 
-    const makeAPICall = async () => {
         try {
-          const response = await fetch('http://localhost:8000/', {mode:'cors'});
-          const data = await response.json();
-          console.log({ data })
+          const response = await fetch(url, options)
+          const data = await response.json()
+          console.log({data})
+        } catch (error) {
+          console.error(error)
         }
-        catch (e) {
-          console.log(e)
-        }
-      }
-      useEffect(() => {
-        makeAPICall();
-      }, [])
-
-    const handleOnChange = (e: any) => {
-        const {name, value} = e.target
-        setState({
-            ...state,
-            [name]: value
-        })
     }
 
     const returnHome = () => {
@@ -191,7 +127,6 @@ const NewAddress = () => {
                     </Form>
                 )}
             </Formik>
-            {/* TODO: add home icon */}
             <Button onClick={returnHome}>Back to home page</Button> 
         </div>
      
