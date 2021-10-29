@@ -61,8 +61,7 @@ const NewAddress = () => {
             county: county,
             locality: locality,
             postcode: postcode
-        };
-        console.log(body)
+        }
         
         const options = {
           method: "POST",
@@ -136,11 +135,7 @@ const NewAddress = () => {
                 <div className="error-message status-message">
                     {error.error.message}. Please try again
                 </div>
-            ) : (
-                    <div className="success-message status-message">
-                        Successfully added new address
-                    </div>
-                )     
+            ) : null   
             }
             <Button onClick={returnHome}>Back to home page</Button> 
         </div>
