@@ -96,6 +96,10 @@
       padding: 6px 66px;
     }
 
+    .formik-field:nth-last-child(2) {
+      margin-bottom: 12px;
+    }
+
     .formik-label {
       font-size: 16px;
       margin: 12px;
@@ -107,5 +111,13 @@
       margin: 6px;
       color: var(--red);
     }
+  }
+
+  .status-message {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 600;
   }
 }
