@@ -1,11 +1,11 @@
 import { Field, Form, Formik } from 'formik';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import BlueShape from '../assets/blue-shape.svg';
 import RedShape from '../assets/red-shape.svg';
 import YellowShape from '../assets/yellow-shape.svg';
 import Button from '../components/buttons/NavigationButton';
-
 
 export interface NewAddressViewValues {
     addressLineOne: string
@@ -45,6 +45,7 @@ const initialValues: NewAddressViewValues = {
 
 const NewAddress = () => {
 
+    const [error, setError] = useState<String>('')
     const history = useHistory()
 
     const API_KEY = 'W7Ky26qT5EeUMsi0t1R0LA33168'
@@ -79,6 +80,10 @@ const NewAddress = () => {
           const data = await response.json()
           console.log({data})
         } catch (error) {
+            setError(prevState => ({
+                ...prevState,
+                error
+            }))
           console.error(error)
         }
     }
@@ -127,6 +132,16 @@ const NewAddress = () => {
                     </Form>
                 )}
             </Formik>
+            {error ? (
+                <div className="error-message status-message">
+                    {error.error.message}. Please try again
+                </div>
+            ) : (
+                    <div className="success-message status-message">
+                        Successfully added new address
+                    </div>
+                )     
+            }
             <Button onClick={returnHome}>Back to home page</Button> 
         </div>
      
