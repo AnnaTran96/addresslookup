@@ -44,46 +44,6 @@
     text-transform: capitalize;
   }
 
-  .postcode-form,
-  .new-address-form {
-    display: flex;
-    flex-direction: column;
-    margin: 50px 20px 20px 20px;
-
-    label {
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 22px;
-    }
-
-    input[type="text"] {
-      width: 200px;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 300px;
-      text-align: center;
-      padding: 8px;
-      text-transform: uppercase;
-    }
-  }
-
-  .new-address-wrapper {
-    transform: translate(-50%, -30%);
-
-    .new-address-form {
-      margin: 0;
-
-      label {
-        margin-bottom: 8px;
-        font-size: 16px;
-      }
-
-      input[type="text"] {
-        width: 400px;
-      }
-    }
-  }
-
   .select {
     width: 400px;
     position: relative;
@@ -100,7 +60,8 @@
     transform: translateX(-3%);
   }
 
-  .address {
+  .address,
+  .address-search-result {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -114,9 +75,37 @@
   }
 
   .address-search-result {
-    text-align: center;
-    position: fixed;
     top: 80%;
     transform: translate(0, 90%);
+  }
+
+  .formik-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+
+    .formik-field {
+      width: 300px;
+      border: none;
+      border-radius: 100px;
+      padding: 6px 66px;
+    }
+
+    .formik-label {
+      font-size: 16px;
+      margin: 12px;
+    }
+
+    .formik-error {
+      font-size: 12px;
+      font-weight: 500;
+      margin: 6px;
+      color: var(--red);
+    }
   }
 }
