@@ -27,7 +27,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
-                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+                test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
                 type: 'asset/resource',
             },
             {
@@ -44,15 +44,5 @@ module.exports = {
             template: path.resolve(__dirname, './src/index.html'),
         }),
         new CleanWebpackPlugin(),
-        // new webpack.DefinePlugin({
-        //     'process.env': JSON.stringify(dotenv.config().parsed)
-        // })
     ],
-    // devServer: {
-    //     contentBase: path.join(__dirname, './src'),
-    //     port: 3000,
-    //     hotOnly: true,
-    //     compress: true,
-    //     open: true,
-    // },
 }
