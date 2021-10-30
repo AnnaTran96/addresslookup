@@ -21,15 +21,15 @@ export interface NewAddressViewValues {
 const validationSchema = Yup.object().shape({
     addressLineOne: Yup.string()
         .min(2, 'Too short')
-        .required('This is required. Please enter the address'),
+        .required('This is required'),
     city: Yup.string()
         .min(2, 'Too short')
-        .required('This is required. Please enter the city'),
+        .required('This is required'),
     county: Yup.string()
         .min(2, 'Too short')
-        .required('This is required. Please enter the county'),
+        .required('This is required'),
     postcode: Yup.string()
-        .required('This is required. Please enter the postcode'),
+        .required('This is required'),
 })
 
 const initialValues: NewAddressViewValues = {
@@ -137,7 +137,7 @@ const NewAddress = () => {
                 </div>
             ) : null   
             }
-            <Button onClick={returnHome}>Back to home page</Button> 
+            <Button id="home-button" onClick={returnHome}>Back to home page</Button> 
         </div>
      
     )
