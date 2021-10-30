@@ -106,7 +106,7 @@ const PostcodeLookup = () => {
                 </div>
                 }
             </div>
-            <Button onClick={returnHome}>Back to home page</Button> 
+            <Button id="home-btn" onClick={returnHome}>Back to home page</Button> 
             <Button id="new-address" onClick={addNewAddress}>Add new address</Button>
         </div>
     )

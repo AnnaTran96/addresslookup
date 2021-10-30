@@ -20,8 +20,8 @@ const Home = () => {
         <div className="home-container">
             <div className="home-wrapper">
                 <h1 className="main-title">Address Lookup</h1>
-                <Button onClick={handleOnClickAddressLookup}>Search By City</Button>
-                <Button onClick={handleOnClickPostcodeLookup}>Search By Postcode</Button>
+                <Button id="city-button" onClick={handleOnClickAddressLookup}>Search By City</Button>
+                <Button id="postcode-button" onClick={handleOnClickPostcodeLookup}>Search By Postcode</Button>
                 </div>
             <div className="home-inner-container"></div>
             <img src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80" alt="image" className="happy"></img>

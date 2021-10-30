@@ -62,24 +62,23 @@ const AddressLookUp = () => {
             <img src={BlueShape} className="blue-shape" />
             <div className="address-wrapper">
                 <h1 className="address-title">Search by city</h1>
-            <AsyncSelect 
-                loadOptions={loadOptions}
-                onChange={handleChange}
-                value={selectedOption}
-                className="select"
-                placeholder="Search address by city"
-                isClearable
-            />
-            {selectedOption && 
-                <div className="address-search-result">
-                    <h3>Address</h3>
-                    {splitAddress}
-                </div>
-            }
+                <AsyncSelect 
+                    loadOptions={loadOptions}
+                    onChange={handleChange}
+                    value={selectedOption}
+                    className="select"
+                    placeholder="Search address by city"
+                    isClearable
+                />
+                {selectedOption && 
+                    <div className="address-search-result">
+                        <h3>Address</h3>
+                        {splitAddress}
+                    </div>
+                }
             </div>
-            <Button onClick={returnHome}>Back to home page</Button>
+            <Button id="home" onClick={returnHome}>Back to home page</Button>
             <Button id="new-address" onClick={addNewAddress}>Add new address</Button>
-            
         </div>
     )
 }
