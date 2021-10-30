@@ -13,8 +13,9 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "checkJs": true
+    "checkJs": true,
+    "types": ["cypress", "@testing-library/cypress", "node", "@types/node"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "cypress/integration/tests"],
   "exclude": ["node_modules", "build"]
 }
