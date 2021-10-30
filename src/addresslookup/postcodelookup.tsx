@@ -7,9 +7,7 @@ import YellowShape from '../assets/yellow-shape.svg'
 import Button from '../components/buttons/NavigationButton'
 import './styles.scss'
 
-// TODO: error handling + validation
 // TODO: add unit tests
-// TODO: store API key
 
 type OptionType = {
     value: string,
@@ -30,21 +28,18 @@ const PostcodeLookup = () => {
     const [selectedOption, setSelectedOption] = useState<OptionType>()
 
     const history = useHistory()
-
-    // const API_KEY = 'pGTmtTsS5EGNm5Bpga2Bdg33168'
-    const API_KEY = 'odHqOd1MsECNFi_4xTyXtw33193'
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     const loadOptions = async (inputText: string, callback: any) => {
         const res = await fetch(`https://api.getAddress.io/find/${inputText}?api-key=${API_KEY}&expand=true`)
         const data = await res.json()
-        console.log({data})
         setState({
             ...state,
             postcode: data.postcode
         })
         callback(data.addresses.map((suggestion: any) => ({
-            label: suggestion.formatted_address.filter((a: any) => a).join(', '),
-            value: suggestion.formatted_address.filter((a: any) => a).join(', '),
+            label: suggestion.formatted_address.filter((a: string[]) => a).join(', '),
+            value: suggestion.formatted_address.filter((a: string[]) => a).join(', '),
             lineOne: suggestion.line_1, 
             lineTwo: suggestion.line_2, 
             lineThree: suggestion.line_3, 

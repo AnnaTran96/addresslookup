@@ -12,25 +12,16 @@ type OptionType = {
     label: string
 }
 
-export interface AddressLookUpProps {
-    apiKey?: string
-}
-
-// TODO: store api key in .env file
-
-const AddressLookUp = ({
-    apiKey 
-}: AddressLookUpProps) => {
+const AddressLookUp = () => {
 
     const [selectedOption, setSelectedOption] = useState<OptionType>()
     const [state, setState] = useState({
         id: '',
         address: ''
     })
-
+    
     const history = useHistory()
-
-    const API_KEY = 'odHqOd1MsECNFi_4xTyXtw33193'
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     const loadOptions = async (inputText: string, callback: any) => {
         const res = await fetch(`https://api.getAddress.io/autocomplete/${inputText}?api-key=${API_KEY}`)
@@ -44,7 +35,6 @@ const AddressLookUp = ({
 
     const handleChange = (selectedOption: any) => {
         setSelectedOption(selectedOption)
-        console.log({selectedOption})
         setState({
             ...state,
             id: selectedOption.id,

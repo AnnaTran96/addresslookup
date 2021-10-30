@@ -48,7 +48,7 @@ const NewAddress = () => {
     const [error, setError] = useState<String>('')
     const history = useHistory()
 
-    const API_KEY = 'W7Ky26qT5EeUMsi0t1R0LA33168'
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     const handleSubmit = async (values: NewAddressViewValues) => {
         const { addressLineOne, addressLineTwo, addressLineThree, addressLineFour, city, county, locality, postcode } = values;
