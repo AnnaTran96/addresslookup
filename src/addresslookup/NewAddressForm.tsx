@@ -48,8 +48,6 @@ const NewAddress = () => {
     const [error, setError] = useState<String>('')
     const history = useHistory()
 
-    const API_KEY = process.env.REACT_APP_API_KEY
-
     const handleSubmit = async (values: NewAddressViewValues) => {
         const { addressLineOne, addressLineTwo, addressLineThree, addressLineFour, city, county, locality, postcode } = values;
         const body = {
@@ -72,19 +70,20 @@ const NewAddress = () => {
           body: JSON.stringify(body)
         }
 
-        const url = `https://api.getAddress.io/private-address/${body.postcode}?api-key=${API_KEY}`
-
-        try {
-          const response = await fetch(url, options)
-          const data = await response.json()
-          console.log({data})
-        } catch (error) {
+        fetch("http://localhost:5000/createnewaddress", {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: { "Content-Type": "application/json" }
+        })
+         .then(res => res.json())
+         .then(data => console.log(data))
+         .catch(err => {
             setError(prevState => ({
                 ...prevState,
                 error
             }))
-          console.error(error)
-        }
+            console.error(err)
+         }) 
     }
 
     const returnHome = () => {

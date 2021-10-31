@@ -1,42 +1,33 @@
-const express = require('express')
-const app = express()
-const request = require('request')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
+const fetch = require('request')
+const env = require('dotenv').config()
 
-const API_KEY = process.env.REACT_APP_API_KEY
+const PORT = 5000;
+const app = express();
 
+app.use(cors());
 const corsOptions = {
-    origin: 'https://api.getAddress.io',
-}
+    origin: "http://localhost:8080"
+};
 
-app.get('/cors', (req, res) => {
-    res.send('This has CORS enabled')
-})
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 
-app.get('/', cors(corsOptions), (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*')
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    const url = `https://api.getAddress.io/autocomplete/london?api-key=${API_KEY}`
-    request(url, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body);
-            res.json(body);
-        }
-    })
-})
+const API_KEY = process.env.REACT_APP_ADMINISTRATION_KEY
 
-app.post('/', cors(corsOptions), (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*')
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    const url = `https://api.getAddress.io/private-address/se2wsq?api-key=${API_KEY}`
-    request(url, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body);
-            res.json(body);
-        }
-    })
-})
+const requestEndpoint = `https://api.getAddress.io/private-address/se2wsq?api-key=${API_KEY}`;
 
-app.listen(8000, () => {
-    console.log('listening on port 8000')
-})
+app.post('/createnewaddress', cors(corsOptions), async (req, res) => {
+    const fetchOptions = {
+        method: 'POST'
+    }
+    const response = await fetch(requestEndpoint, fetchOptions);
+    const data = await response.json();
+    res.json(data);
+    console.log(req.body)
+});
+
+app.listen(PORT, () => {
+    console.log(`App listening at http://localhost:${PORT}`);
+});
