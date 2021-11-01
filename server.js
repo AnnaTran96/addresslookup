@@ -20,12 +20,15 @@ const requestEndpoint = `https://api.getAddress.io/private-address/se2wsq?api-ke
 
 app.post('/createnewaddress', cors(corsOptions), async (req, res) => {
     const fetchOptions = {
-        method: 'POST'
+        method: 'POST',
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, DELETE'
+        }
     }
     const response = await fetch(requestEndpoint, fetchOptions);
     const data = await response.json();
-    res.json(data);
-    console.log(req.body)
+    res.send(req.body)
 });
 
 app.listen(PORT, () => {
