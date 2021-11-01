@@ -67,3 +67,51 @@ The app has been built mainly with React and TypeScript. Express and Node.js has
 - Create forms and dropdown select component
 - Create reusable button components
 - Create tests and add final styling
+
+## Challenges
+
+One of the challenges with this project was fetching data using the `POST` method. There are issues with CORS so I have created `server.js` to handle this CORS issue.
+
+I have tried to fetch data using `axios`:
+
+```js
+axios
+  .post("http://localhost:5000/createnewaddress", body, {
+    headers: headers,
+  })
+  .then(
+    (response) => {
+      console.log(response);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+```
+
+The response returned is:
+
+```js
+{
+    "data": {
+        "addressLineOne": "Test",
+        "addressLineTwo": "Test",
+        "addressLineThree": "Test",
+        "addressLineFour": "Test",
+        "city": "Test",
+        "county": "Test",
+        "locality": "Test",
+        "postcode": "Test"
+    },
+    "status": 200,
+    "statusText": "OK",
+    "headers": {
+        "content-length": "150",
+        "content-type": "application/json; charset=utf-8"
+    },
+    "config": {...},
+    "request": {}
+}
+```
+
+What I would like to return is the response from getAdress API rather than the body of this request.
