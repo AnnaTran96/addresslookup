@@ -114,4 +114,4 @@ The response returned is:
 }
 ```
 
-What I would like to return is the response from getAdress API rather than the body of this request.
+Although the CORS issue has been solved, the response above returns the response from client side rather than the expected response from getAddress' API.
